@@ -21,11 +21,6 @@ function getDefaultState() {
     return defaultState;
 }
 
-const addCard = (action, state) => {
-    state.cards[state.activePlayer] = action.card;
-    return state.cards;
-}
-
 const updateScores = (action, state) => {
     (state.cards[0].numericValue > state.cards[1].numericValue) ?
         state.scores[0]++ :
@@ -38,13 +33,21 @@ export default function (state = getDefaultState(), action) {
     switch (action.type) {
         case StartGame:
             // Action happens when new game started, should reset state to be same as default
-            return { ...state };
+            return {
+                ...state,
+                activePlayer: 0,
+                cards: [null, null],
+                scores: [0, 0]
+            };
 
         case PickCard:
             // Action stores card passed with action object to state and changes activePlayer to next player
             return {
                 ...state,
-                cards: addCard(action, state),
+                cards: {
+                    ...state.cards,
+                    [state.activePlayer]: action.card
+                },
                 activePlayer: state.activePlayer ? 0 : 1,
             };
 

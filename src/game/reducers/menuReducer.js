@@ -8,7 +8,7 @@ const defaultState = {
 
 export default function(state = defaultState, action) {
     const result = { ...state };
-    console.log('menu', state, action);
+    console.log('menu', action, state);
     switch (action.type) {
         case StartGame:
             result.isGameInProgress = true;
@@ -17,7 +17,7 @@ export default function(state = defaultState, action) {
         case FinishGame:
             result.isGameInProgress = false;
             result.winner = action.winner;
-            result.winnerScore = action.score;
+            result.score = action.score;
             return result;
 
         default:

@@ -92,9 +92,9 @@ GameContainer.defaultProps = {
 
 const mapStateToProps = state => ({
     isGameInProgress: state.menu.isGameInProgress,
-    isInMainMenu: !state.menu.isGameInProgress && !state.menu.winner,
+    isInMainMenu: !state.menu.isGameInProgress && state.menu.winner === null,
 
-    isGameResult: !state.menu.isGameInProgress && state.menu.winner,
+    isGameResult: !state.menu.isGameInProgress && state.menu.winner !== null,
     deck: state.deck,
     card1: state.game.cards[0],
     card2: state.game.cards[1],
