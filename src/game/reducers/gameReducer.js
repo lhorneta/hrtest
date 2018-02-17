@@ -21,6 +21,19 @@ function getDefaultState() {
     return defaultState;
 }
 
+const addCard = (action, state) => {
+    state.cards[state.activePlayer] = action.card;
+    return state.cards;
+}
+
+const updateScores = (action, state) => {
+    (state.cards[0].numericValue > state.cards[1].numericValue) ?
+        state.scores[0]++ :
+        state.scores[1]++
+
+    return state.scores;
+}
+
 export default function (state = getDefaultState(), action) {
     switch (action.type) {
         case StartGame:
@@ -29,14 +42,22 @@ export default function (state = getDefaultState(), action) {
 
         case PickCard:
             // Action stores card passed with action object to state and changes activePlayer to next player
-            return { ...state };
+            return {
+                ...state,
+                cards: addCard(action, state),
+                activePlayer: state.activePlayer ? 0 : 1,
+            };
 
         case EvaluateRound:
             // Action evaluates game round result and :
             //    - Adds points for the player who won by
             //      comparing player1 and player2 cards numeric value (see card data class)
             //    - Resets player's cards to default value
-            return { ...state };
+            return {
+                ...state,
+                scores: updateScores(action, state),
+                cards: [null, null]
+            };
         default:
             return state;
     }
