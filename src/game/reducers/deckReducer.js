@@ -4,7 +4,6 @@ import { PickCard, StartGame } from "../actions";
 const defaultState = new DeckData();
 
 export default function(state = defaultState, action) {
-    console.log(action.type);
     switch (action.type) {
         case StartGame:
             const newDeck = new DeckData();

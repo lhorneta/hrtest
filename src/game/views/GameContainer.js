@@ -21,7 +21,6 @@ class GameContainer extends React.Component {
         }
     }
     render() {
-        console.log('app', this.props);
         if (this.props.isGameInProgress) {
             return (
                 <View style={Styles.container}>
@@ -55,7 +54,7 @@ class GameContainer extends React.Component {
                     <Text style={Styles.scoreLabel}>
                         Game finished. {this.props.winner} won with score of {this.props.winnerScore}
                     </Text>
-                    <HiScore />
+                    <HiScore hiscore={this.props.winnerList} />
                     <Button title="Play again" onPress={this.props.startGame} />
                 </View>
             );
@@ -79,7 +78,8 @@ GameContainer.propTypes = {
     pickCard: PropTypes.func.isRequired,
     evaluateRound: PropTypes.func.isRequired,
     startGame: PropTypes.func.isRequired,
-    finishGame: PropTypes.func.isRequired
+    finishGame: PropTypes.func.isRequired,
+    winnerList: PropTypes.array.isRequired,
 };
 
 GameContainer.defaultProps = {
@@ -102,7 +102,9 @@ const mapStateToProps = state => ({
     score1: state.game.scores[0],
     score2: state.game.scores[1],
     winner: state.menu.winner,
-    winnerScore: state.menu.score
+    winnerScore: state.menu.score,
+
+    winnerList: state.hiscore.winnerList,
 });
 
 const mapDispatchToProps = dispatch => ({
