@@ -8,7 +8,6 @@ const defaultState = {
 
 export default function(state = defaultState, action) {
     const result = { ...state };
-    console.log('menu', action, state);
     switch (action.type) {
         case StartGame:
             result.isGameInProgress = true;
