@@ -29,8 +29,10 @@ class GameContainer extends React.Component {
                     </Text>
                     <View style={Styles.deckAndCardsContainer}>
                         <Deck deck={this.props.deck} onPickCard={card => this._pickCard(card)} />
-                        <Card card={this.props.card1} />
-                        <Card card={this.props.card2} />
+                        <View style={Styles.deckCardsHolder}>
+                            <Card card={this.props.card1} />
+                            <Card card={this.props.card2} />
+                        </View>
                     </View>
                     <Text style={Styles.scoreLabel}>
                         Player 2 - {this.props.score2} points

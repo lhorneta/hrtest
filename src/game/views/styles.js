@@ -20,6 +20,12 @@ const GameStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  deckCardsHolder: {
+    flex: 0,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 
 });
 
